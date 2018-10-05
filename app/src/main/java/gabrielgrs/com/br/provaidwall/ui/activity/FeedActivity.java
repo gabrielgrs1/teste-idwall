@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -91,7 +93,23 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     @Override
     public void onBackPressed() {
         alertDialog.show();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.feed_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.feed_menu_exit:
+                alertDialog.show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void resetDogsListBy(FeedDto feedDto) {
@@ -205,7 +223,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         builder.setCancelable(true);
         return builder;
     }
-s
+
     private void closeApplication() {
         finishAffinity();
         System.exit(0);
