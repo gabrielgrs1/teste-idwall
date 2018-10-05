@@ -1,5 +1,7 @@
 package gabrielgrs.com.br.provaidwall.ui.activity;
 
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
@@ -42,11 +44,9 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
 
     private DogsListAdapter mDogsListAdapter;
     private List<String> mDogImageLinkList;
+    private AlertDialog alertDialog;
 
-    //TODO IMPLEMENTAR DIALOG DE FECHAR APLICACAO AO PRESSIONAR DUAS VEZES O VOLTAR
     //TODO IMPLEMENTAR BOTAO SAIR
-    //TODO IMPLEMENTAR PARCABLE AO INVES DE SERIALIZABLE
-    //TODO IMPLEMENTAR ROOM PARA ARMAZENAR O TOKEN
     //TODO IMPLEMENTAR O DAGGER
     //TODO COLOCAR UM DIMENS DO TAMANHO DAS IMAGEVIEWS
     @Override
@@ -61,6 +61,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         configureDogImageLinkList();
         configureDogImageRecyclerView();
         getDefaultDog();
+        configureAlertDialog();
     }
 
 
@@ -85,6 +86,12 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
                 .setDuration(8000)
                 .setMessage(message)
                 .sneakError();
+    }
+
+    @Override
+    public void onBackPressed() {
+        alertDialog.show();
+
     }
 
     private void resetDogsListBy(FeedDto feedDto) {
@@ -180,4 +187,27 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         }
     }
 
+    private void configureAlertDialog() {
+        AlertDialog.Builder builder = configureAlertBuilder();
+        alertDialog = builder.create();
+    }
+
+    @NonNull
+    private AlertDialog.Builder configureAlertBuilder() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FeedActivity.this);
+        builder.setTitle("Confirmação");
+        builder.setMessage("Voce tem certeza que deseja fechar a aplicacao?");
+        builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+            closeApplication();
+        });
+
+        builder.setNegativeButton("Cancelar", (dialogInterface, i) -> alertDialog.dismiss());
+        builder.setCancelable(true);
+        return builder;
+    }
+
+    private void closeApplication() {
+        finishAffinity();
+        System.exit(0);
+    }
 }
