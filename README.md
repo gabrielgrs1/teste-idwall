@@ -26,7 +26,7 @@ User informs an invalid email and triggers the `login` button. After this it is 
 
 
 ## Decisions taken during development
-  1. Library decisions:
+  - Library decisions:
     - Butterknife: I decided to use butterknife to increase productivity at the time of bind and listeners from some views
     - Retrofit: I decided to use the retrofit to consume the API's for facilitating the treatment of callbacks, speed in the transmission and being a library that is very common in the day-to-day of most mobile development companies.
     - Picasso: 
@@ -34,7 +34,7 @@ User informs an invalid email and triggers the `login` button. After this it is 
     - AHBottomNavigation
     - okHttpLogInterceptor
     - Facebook Shimmer
-  2. Architeture decisions:
+  - Architeture decisions:
     -
 
 
