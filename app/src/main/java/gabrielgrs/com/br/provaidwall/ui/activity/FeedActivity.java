@@ -195,17 +195,17 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     @NonNull
     private AlertDialog.Builder configureAlertBuilder() {
         AlertDialog.Builder builder = new AlertDialog.Builder(FeedActivity.this);
-        builder.setTitle("Confirmação");
-        builder.setMessage("Voce tem certeza que deseja fechar a aplicacao?");
-        builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+        builder.setTitle(R.string.feed_exit_dialog_title);
+        builder.setMessage(R.string.feed_exit_dialog_message);
+        builder.setPositiveButton(R.string.feed_exit_dialog_positive_button, (dialogInterface, i) -> {
             closeApplication();
         });
 
-        builder.setNegativeButton("Cancelar", (dialogInterface, i) -> alertDialog.dismiss());
+        builder.setNegativeButton(R.string.feed_exit_dialog_negative_button, (dialogInterface, i) -> alertDialog.dismiss());
         builder.setCancelable(true);
         return builder;
     }
-
+s
     private void closeApplication() {
         finishAffinity();
         System.exit(0);

@@ -24,6 +24,12 @@
     <string name="feed_hound_textivew">Hound</string>
     <string name="feed_pug_textivew">Pug</string>
     <string name="feed_labrador_textivew">Labrador</string>
-    <string name="dialog_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
-    <string name="dogs_list_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
+    <string name="feed_dialog_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
+    <string name="feed_dogs_list_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
+
+    <!--Feed Exit Dialog-->
+    <string name="feed_exit_dialog_title">Confirmação</string>
+    <string name="feed_exit_dialog_message">Voce tem certeza que deseja fechar a aplicacao?</string>
+    <string name="feed_exit_dialog_positive_button">Confirmar</string>
+    <string name="feed_exit_dialog_negative_button">Cancelar</string>
 </resources>
