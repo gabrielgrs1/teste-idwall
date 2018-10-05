@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -32,8 +34,8 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
 
     @Override
     public DogsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View viewCriada = LayoutInflater.from(mContext).inflate(R.layout.dogs_list_item, parent, false);
-        return new ViewHolder(viewCriada);
+        View createdView = LayoutInflater.from(mContext).inflate(R.layout.dogs_list_item, parent, false);
+        return new ViewHolder(createdView);
     }
 
     @Override
@@ -47,42 +49,95 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView mDogImageView;
+        private static final int LIST_DOG_IMAGE_SIZE = 155;
+        private static final int ZOOM_DOG_IMAGE_SIZE = 400;
+        private ImageView mListImageView;
+        private ShimmerFrameLayout mListImageShimmer;
+        private ImageView mDialogImageView;
+        private ShimmerFrameLayout mDialogShimmer;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mDogImageView = itemView.findViewById(R.id.list_dogs_item_imageview);
-            mDogImageView.setOnClickListener(this);
+            configureView(itemView);
+        }
+
+        private void configureView(View itemView) {
+            configureListViews(itemView);
+            configureOnClickListener();
+        }
+
+        private void configureOnClickListener() {
+            mListImageView.setOnClickListener(this);
+        }
+
+        private void configureListViews(View itemView) {
+            mListImageView = itemView.findViewById(R.id.dogs_list_item_imageview);
+            mListImageShimmer = itemView.findViewById(R.id.dogs_list_shimmer_view_container);
         }
 
         void setDogImage(String imageUrl) {
             Picasso.get()
                     .load(imageUrl)
-                    .resize(180, 180)
+                    .resize(LIST_DOG_IMAGE_SIZE, LIST_DOG_IMAGE_SIZE)
                     .centerCrop()
-                    .into(mDogImageView);
-        }
+                    .noFade()
+                    .into(mListImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mListImageShimmer.setVisibility(View.GONE);
+                        }
 
+                        @Override
+                        public void onError(Exception e) {
+                            mListImageShimmer.setVisibility(View.GONE);
+                        }
+                    });
+        }
 
         @Override
         public void onClick(View view) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-
-            builder.setCancelable(true);
-            builder.setView(R.layout.dogs_zoom);
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-
-            ImageView mDialogListItemImageView = alertDialog.findViewById(R.id.dialog_list_dogs_item_imageview);
-
+            AlertDialog alertDialog = configureAlertDialog();
+            configureZoomDogViews(alertDialog);
 
             Picasso.get()
                     .load(mDogImageLinkList.get(getAdapterPosition()))
-                    .resize(400,400)
+                    .resize(ZOOM_DOG_IMAGE_SIZE, ZOOM_DOG_IMAGE_SIZE)
                     .centerCrop()
                     .noFade()
-                    .into(mDialogListItemImageView);
+                    .into(mDialogImageView, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            mDialogShimmer.setVisibility(View.GONE);
+                        }
 
+                        @Override
+                        public void onError(Exception e) {
+                            mDialogShimmer.setVisibility(View.GONE);
+                        }
+                    });
+
+        }
+
+        // Não foi possível utilizar o Butterknife aqui pois o aplicativo crashava e eu nao consegui reservar um tempo para analisar o porque do crash
+        private void configureZoomDogViews(AlertDialog alertDialog) {
+            mDialogImageView = alertDialog.findViewById(R.id.dialog_list_dogs_item_imageview);
+            mDialogShimmer = alertDialog.findViewById(R.id.dialog_zoom_shimmer_view_container);
+        }
+
+        @NonNull
+        private AlertDialog configureAlertDialog() {
+            AlertDialog.Builder builder = configureAlertBuilder();
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+            return alertDialog;
+        }
+
+        @NonNull
+        private AlertDialog.Builder configureAlertBuilder() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setCancelable(true);
+            builder.setView(R.layout.dogs_zoom);
+            return builder;
         }
     }
 

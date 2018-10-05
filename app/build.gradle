@@ -39,12 +39,11 @@ ext {
 
     butterKniveVersion = '8.8.1'
     retrofitVersion = '2.4.0'
-    gsonVersion = '2.8.5'
     picassoVersion = '2.71828'
     sneakerVersion = '1.0.3'
-    traySharedPreferencesVersion = '0.12.0'
     bottomNavigationVersion = '2.1.0'
     okhttpInterceptorVersion = '3.9.0'
+    shimmerVersion = '0.3.0'
 }
 
 dependencies {
@@ -67,17 +66,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-    //Gson
-    implementation "com.google.code.gson:gson:$gsonVersion"
-
     //Picaso
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     //Alerter sneaker
     implementation "com.irozon.sneaker:sneaker:$sneakerVersion"
-
-    //Tray sharedpreferences
-    implementation "net.grandcentrix.tray:tray:$traySharedPreferencesVersion"
 
     //Bottombar Navigation
     implementation "com.aurelhubert:ahbottomnavigation:$bottomNavigationVersion"
@@ -85,8 +78,7 @@ dependencies {
     //OkHTTP Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpInterceptorVersion"
 
-    //Zoom Image
-    implementation 'com.jsibbold:zoomage:1.1.0'
-
+    //Simmer
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 
 }

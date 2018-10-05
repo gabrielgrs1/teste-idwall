@@ -24,4 +24,6 @@
     <string name="feed_hound_textivew">Hound</string>
     <string name="feed_pug_textivew">Pug</string>
     <string name="feed_labrador_textivew">Labrador</string>
+    <string name="dialog_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
+    <string name="dogs_list_shimmer_placeholder_imageview_description">Shimmer Placeholder</string>
 </resources>
