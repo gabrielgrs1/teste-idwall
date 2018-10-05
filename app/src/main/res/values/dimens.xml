@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dog_list_item_width">155dp</dimen>
+    <dimen name="dog_list_item_height">155dp</dimen>
+    <dimen name="dog_zoom_width">400dp</dimen>
+    <dimen name="dog_zoom_height">400dp</dimen>
+</resources>

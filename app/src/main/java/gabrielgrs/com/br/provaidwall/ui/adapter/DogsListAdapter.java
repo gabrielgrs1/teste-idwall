@@ -15,7 +15,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import gabrielgrs.com.br.provaidwall.R;
+import gabrielgrs.com.br.provaidwall.ui.activity.FeedActivity;
 
 /**
  * Created by gabrielgrs
@@ -35,6 +39,7 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
     @Override
     public DogsListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View createdView = LayoutInflater.from(mContext).inflate(R.layout.dogs_list_item, parent, false);
+        ButterKnife.bind((FeedActivity) mContext);
         return new ViewHolder(createdView);
     }
 
@@ -48,31 +53,22 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
         return mDogImageLinkList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
         private static final int LIST_DOG_IMAGE_SIZE = 155;
         private static final int ZOOM_DOG_IMAGE_SIZE = 400;
-        private ImageView mListImageView;
-        private ShimmerFrameLayout mListImageShimmer;
+
+        @BindView(R.id.dogs_list_item_imageview)
+        ImageView mListImageView;
+
+        @BindView(R.id.dogs_list_shimmer_view_container)
+        ShimmerFrameLayout mListImageShimmer;
+
         private ImageView mDialogImageView;
         private ShimmerFrameLayout mDialogShimmer;
 
         ViewHolder(View itemView) {
             super(itemView);
-            configureView(itemView);
-        }
-
-        private void configureView(View itemView) {
-            configureListViews(itemView);
-            configureOnClickListener();
-        }
-
-        private void configureOnClickListener() {
-            mListImageView.setOnClickListener(this);
-        }
-
-        private void configureListViews(View itemView) {
-            mListImageView = itemView.findViewById(R.id.dogs_list_item_imageview);
-            mListImageShimmer = itemView.findViewById(R.id.dogs_list_shimmer_view_container);
+            ButterKnife.bind(this, itemView);
         }
 
         void setDogImage(String imageUrl) {
@@ -94,8 +90,8 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
                     });
         }
 
-        @Override
-        public void onClick(View view) {
+        @OnClick
+        void onClick() {
             AlertDialog alertDialog = configureAlertDialog();
             configureZoomDogViews(alertDialog);
 
@@ -120,7 +116,7 @@ public class DogsListAdapter extends RecyclerView.Adapter<DogsListAdapter.ViewHo
 
         // Não foi possível utilizar o Butterknife aqui pois o aplicativo crashava e eu nao consegui reservar um tempo para analisar o porque do crash
         private void configureZoomDogViews(AlertDialog alertDialog) {
-            mDialogImageView = alertDialog.findViewById(R.id.dialog_list_dogs_item_imageview);
+            mDialogImageView = alertDialog.findViewById(R.id.dialog_dog_imageview);
             mDialogShimmer = alertDialog.findViewById(R.id.dialog_zoom_shimmer_view_container);
         }
 

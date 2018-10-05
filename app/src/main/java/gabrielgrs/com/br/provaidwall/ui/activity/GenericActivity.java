@@ -18,7 +18,6 @@ public abstract class GenericActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         startMethods();
-        ButterKnife.bind(this);
     }
 
     protected void startMethods() {

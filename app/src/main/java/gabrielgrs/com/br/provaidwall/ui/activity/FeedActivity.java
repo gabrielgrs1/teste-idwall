@@ -1,7 +1,11 @@
 package gabrielgrs.com.br.provaidwall.ui.activity;
 
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
@@ -11,6 +15,8 @@ import com.irozon.sneaker.Sneaker;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import gabrielgrs.com.br.provaidwall.DogsViewerApplication;
 import gabrielgrs.com.br.provaidwall.R;
 import gabrielgrs.com.br.provaidwall.service.api.feed.FeedDto;
@@ -29,29 +35,24 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     public static final String PUG_TEXT = DogsViewerApplication.getInstance().getString(R.string.feed_pug_textivew);
     public static final String LABRADOR_TEXT = DogsViewerApplication.getInstance().getString(R.string.feed_labrador_textivew);
 
-    private AHBottomNavigation mBottomNavigation;
+    @BindView(R.id.bottom_navigation)
+    AHBottomNavigation mBottomNavigation;
+
+    @BindView(R.id.feed_dogs_recyclerview)
+    RecyclerView mFeedDogsRecyclerView;
+
+    @BindView(R.id.feed_title_textview)
+    TextView mFeedTitleTextView;
+
     private DogsListAdapter mDogsListAdapter;
     private List<String> mDogImageLinkList;
-    private RecyclerView mFeedDogsRecyclerView;
-    private TextView mFeedTitleTextView;
+    private AlertDialog alertDialog;
 
-
-    //TODO IMPLEMENTAR DIALOG DE FECHAR APLICACAO AO PRESSIONAR DUAS VEZES O VOLTAR
-    //TODO IMPLEMENTAR BOTAO SAIR
-    //TODO IMPLEMENTAR PARCABLE AO INVES DE SERIALIZABLE
-    //TODO IMPLEMENTAR DAGGER
-    //TODO IMPLEMENTAR ROOM PARA ARMAZENAR O TOKEN
-    //TODO IMPLEMENTAR APPBAR CUSTOMIZADA COM A RACA DO CACHORRO
-    //TODO TROCAR ICONE DO APLICATIVO
-    //TODO VER PORQUE O BINDVIEW ESTA CRASHANDO O APP E CASO DESCUBRA O PORQUE, COLOCAR TODOS OS FINDVIEWBYID EM BINDVIEW
-    //TODO COLOCAR UM DIMENS DO TAMANHO DAS IMAGEVIEWS
+    //TODO IMPLEMENTAR O DAGGER
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_feed);
-        mBottomNavigation = findViewById(R.id.bottom_navigation);
-        mFeedDogsRecyclerView = findViewById(R.id.feed_dogs_recyclerview);
-        mFeedTitleTextView = findViewById(R.id.feed_title_textview);
-
+        ButterKnife.bind(this);
     }
 
     @Override
@@ -60,6 +61,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         configureDogImageLinkList();
         configureDogImageRecyclerView();
         getDefaultDog();
+        configureAlertDialog();
     }
 
 
@@ -84,6 +86,28 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
                 .setDuration(8000)
                 .setMessage(message)
                 .sneakError();
+    }
+
+    @Override
+    public void onBackPressed() {
+        alertDialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.feed_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.feed_menu_exit:
+                alertDialog.show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void resetDogsListBy(FeedDto feedDto) {
@@ -186,4 +210,27 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
         }
     }
 
+    private void configureAlertDialog() {
+        AlertDialog.Builder builder = configureAlertBuilder();
+        alertDialog = builder.create();
+    }
+
+    @NonNull
+    private AlertDialog.Builder configureAlertBuilder() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(FeedActivity.this);
+        builder.setTitle(R.string.feed_exit_dialog_title);
+        builder.setMessage(R.string.feed_exit_dialog_message);
+        builder.setPositiveButton(R.string.feed_exit_dialog_positive_button, (dialogInterface, i) -> {
+            closeApplication();
+        });
+
+        builder.setNegativeButton(R.string.feed_exit_dialog_negative_button, (dialogInterface, i) -> alertDialog.dismiss());
+        builder.setCancelable(true);
+        return builder;
+    }
+
+    private void closeApplication() {
+        finishAffinity();
+        System.exit(0);
+    }
 }

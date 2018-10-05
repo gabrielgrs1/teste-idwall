@@ -7,14 +7,14 @@
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/dialog_zoom_shimmer_view_container"
-        android:layout_width="400dp"
-        android:layout_height="400dp">
+        android:layout_width="@dimen/dog_zoom_width"
+        android:layout_height="@dimen/dog_zoom_height">
 
         <ImageView
             android:id="@+id/dialog_shimmer_placeholder_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentDescription="@string/dialog_shimmer_placeholder_imageview_description"
+            android:contentDescription="@string/feed_dialog_shimmer_placeholder_imageview_description"
             android:src="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,9 +23,9 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ImageView
-        android:id="@+id/dialog_list_dogs_item_imageview"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
+        android:id="@+id/dialog_dog_imageview"
+        android:layout_width="@dimen/dog_zoom_width"
+        android:layout_height="@dimen/dog_zoom_height"
         android:contentDescription="@string/list_dogs_item_imageview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

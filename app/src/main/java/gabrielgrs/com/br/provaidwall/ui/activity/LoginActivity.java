@@ -11,6 +11,7 @@ import com.irozon.sneaker.Sneaker;
 import java.util.Objects;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import gabrielgrs.com.br.provaidwall.DogsViewerApplication;
@@ -37,6 +38,7 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
 
     @Override
     public void loadingMethods() {
+        ButterKnife.bind(this);
     }
 
     @Override
