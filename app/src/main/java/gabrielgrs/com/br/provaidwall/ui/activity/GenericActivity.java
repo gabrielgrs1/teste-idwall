@@ -3,8 +3,6 @@ package gabrielgrs.com.br.provaidwall.ui.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.irozon.sneaker.Sneaker;
@@ -16,9 +14,6 @@ import gabrielgrs.com.br.provaidwall.utils.Utils;
 
 public abstract class GenericActivity extends AppCompatActivity {
 
-    private FragmentManager fragmentManager;
-    private FragmentTransaction fragmentTransaction;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +22,6 @@ public abstract class GenericActivity extends AppCompatActivity {
     }
 
     protected void startMethods() {
-        fragmentManager = getSupportFragmentManager();
         setLayout();
         loadingMethods();
     }
@@ -51,14 +45,6 @@ public abstract class GenericActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    protected void buildGenericAlert(String title, String message, int duration, int color) {
-        Sneaker.with(this)
-                .setTitle(title)
-                .setDuration(duration)
-                .setMessage(message)
-                .sneak(color);
     }
 
     public abstract void setLayout();

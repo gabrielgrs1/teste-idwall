@@ -36,13 +36,12 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     private TextView mFeedTitleTextView;
 
 
-    //TODO IMPLEMENTAR VOLTAR PARA ABA ANTERIOR
     //TODO IMPLEMENTAR DIALOG DE FECHAR APLICACAO AO PRESSIONAR DUAS VEZES O VOLTAR
     //TODO IMPLEMENTAR BOTAO SAIR
     //TODO IMPLEMENTAR PARCABLE AO INVES DE SERIALIZABLE
     //TODO IMPLEMENTAR DAGGER
     //TODO IMPLEMENTAR ROOM PARA ARMAZENAR O TOKEN
-    //TODO IMPLEMENTAR LISTENER DE CLICK PARA DAR ZOOM NA IMAGEM
+    //TODO IMPLEMENTAR APPBAR CUSTOMIZADA COM A RACA DO CACHORRO
     //TODO TROCAR ICONE DO APLICATIVO
     //TODO VER PORQUE O BINDVIEW ESTA CRASHANDO O APP E CASO DESCUBRA O PORQUE, COLOCAR TODOS OS FINDVIEWBYID EM BINDVIEW
     //TODO COLOCAR UM DIMENS DO TAMANHO DAS IMAGEVIEWS
@@ -66,8 +65,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
 
     @Override
     public void response(FeedDto feedDto) {
-        mDogImageLinkList.clear();
-        mDogImageLinkList.addAll(feedDto.getList());
+        resetDogsListBy(feedDto);
         configureDogImageRecyclerView();
     }
 
@@ -88,18 +86,19 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
                 .sneakError();
     }
 
+    private void resetDogsListBy(FeedDto feedDto) {
+        mDogImageLinkList.clear();
+        mDogImageLinkList.addAll(feedDto.getList());
+    }
+
     private void getDefaultDog() {
         setTitleBy(HUSKY_POSITION);
         feedService(HUSKY_TEXT);
-        mDogsListAdapter.notifyDataSetChanged();
     }
 
     private void configureDogImageRecyclerView() {
-
         mFeedDogsRecyclerView.setLayoutManager(new GridLayoutManager(this, DOGS_COLUNM_QUANTITY));
-
         mDogsListAdapter = new DogsListAdapter(this, mDogImageLinkList);
-
         mFeedDogsRecyclerView.setAdapter(mDogsListAdapter);
     }
 
@@ -108,11 +107,13 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     private void loadBottomBar() {
-
         configureBottomBarItens();
         configureBottomBarStyle();
         configureBottomBar();
+        setOnTabSelectListener();
+    }
 
+    private void setOnTabSelectListener() {
         mBottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
             setTitleBy(position);
             getImagesBy(position);
@@ -122,17 +123,18 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     private void getImagesBy(int position) {
-        String dogSelected = HUSKY_TEXT;
+        feedService(getDogSelectedBy(position));
+    }
 
-        if (position == HOUND_POSITION) {
-            dogSelected = HOUND_TEXT;
+    private String getDogSelectedBy(int position) {
+        if (position == HUSKY_POSITION) {
+            return HUSKY_TEXT;
+        } else if (position == HOUND_POSITION) {
+            return HOUND_TEXT;
         } else if (position == PUG_POSITION) {
-            dogSelected = PUG_TEXT;
-        } else if (position == LABRADOR_POSITION) {
-            dogSelected = LABRADOR_TEXT;
+            return PUG_TEXT;
         }
-
-        feedService(dogSelected);
+        return LABRADOR_TEXT;
     }
 
     private void setTitleBy(int position) {

@@ -42,8 +42,6 @@ public class LoginRepository implements ILoginService {
                 } else if (response.code() != 200) {
                     loginListener.serverError(DogsViewerApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
-
-                Log.e(DogsViewerApplication.getInstance().getString(R.string.generic_log_error), response.message());
             }
 
             @Override

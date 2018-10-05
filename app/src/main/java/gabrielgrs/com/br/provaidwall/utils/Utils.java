@@ -13,6 +13,7 @@ public class Utils {
         Context context = DogsViewerApplication.getInstance();
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = null;
+
         if (connectivityManager != null) {
             netInfo = connectivityManager.getActiveNetworkInfo();
         }

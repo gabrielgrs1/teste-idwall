@@ -15,8 +15,8 @@ import butterknife.OnClick;
 import butterknife.OnFocusChange;
 import gabrielgrs.com.br.provaidwall.DogsViewerApplication;
 import gabrielgrs.com.br.provaidwall.R;
-import gabrielgrs.com.br.provaidwall.service.api.login.LoginResponse;
 import gabrielgrs.com.br.provaidwall.service.api.login.LoginRepository;
+import gabrielgrs.com.br.provaidwall.service.api.login.LoginResponse;
 import gabrielgrs.com.br.provaidwall.utils.validator.ValidateEmail;
 
 public class LoginActivity extends GenericActivity implements LoginRepository.LoginServiceListener {
@@ -34,12 +34,10 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_login);
-
     }
 
     @Override
     public void loadingMethods() {
-
     }
 
     @Override
@@ -79,8 +77,7 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
     @OnFocusChange(R.id.login_login_edittext)
     void focusLostLogin(boolean hasFocus) {
         if (!hasFocus) {
-            final ValidateEmail validateEmail = new ValidateEmail(mEmailInputLayout);
-            validateEmail.isValid();
+            new ValidateEmail(mEmailInputLayout).isValid();
         } else {
             mEmailInputLayout.setError(null);
         }

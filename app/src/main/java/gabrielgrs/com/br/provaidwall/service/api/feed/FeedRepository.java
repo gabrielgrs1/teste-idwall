@@ -1,7 +1,6 @@
 package gabrielgrs.com.br.provaidwall.service.api.feed;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import gabrielgrs.com.br.provaidwall.DogsViewerApplication;
 import gabrielgrs.com.br.provaidwall.R;
@@ -28,7 +27,6 @@ public class FeedRepository implements IFeedService {
         category = verifyCategoryIsNotNull(category);
         verifyTokenIsValid();
 
-
         FeedService feedService = this.apiClient.getRetrofit().create(FeedService.class);
         Call<FeedDto> feedResponse = feedService.getLinkImages(category.toLowerCase(), token);
 
@@ -46,8 +44,6 @@ public class FeedRepository implements IFeedService {
                 } else if (response.code() != 200) {
                     feedListener.serverError(DogsViewerApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
-
-                Log.e(DogsViewerApplication.getInstance().getString(R.string.generic_log_error), response.message());
             }
 
             @Override
