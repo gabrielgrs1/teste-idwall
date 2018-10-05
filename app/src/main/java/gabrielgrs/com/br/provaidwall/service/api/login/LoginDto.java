@@ -1,5 +1,8 @@
 package gabrielgrs.com.br.provaidwall.service.api.login;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,23 +11,38 @@ import com.google.gson.annotations.SerializedName;
  * Time: 1:05 PM
  * Project: ProvaIDwall
  */
-public class LoginDto {
+public class LoginDto implements Parcelable {
 
     @SerializedName("email")
     private String email;
 
-    public LoginDto() {
-    }
-
-    public LoginDto(String email) {
+    LoginDto(String email) {
         this.email = email;
     }
 
-    public String getEmail() {
-        return email;
+    private LoginDto(Parcel in) {
+        email = in.readString();
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static final Creator<LoginDto> CREATOR = new Creator<LoginDto>() {
+        @Override
+        public LoginDto createFromParcel(Parcel in) {
+            return new LoginDto(in);
+        }
+
+        @Override
+        public LoginDto[] newArray(int size) {
+            return new LoginDto[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(email);
     }
 }
