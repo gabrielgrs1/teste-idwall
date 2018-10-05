@@ -1,6 +1,6 @@
 # idDogs
 
-[Download App](https://goo.gl/LZY98q)
+[Download Apk](https://goo.gl/LZY98q)
 
 idDog was an application developed for the test for android development of the company idWall, with the aim of showing photos of dogs divided into category.
 
@@ -22,10 +22,19 @@ idDog was an application developed for the test for android development of the c
 
 ## How It Works
 
-User informs an invalid email and triggers the `login` button. After this it is redirected to the Husky image preview screen and you can navigate between the categories in the navigation bar below. If you want to see the photo in more detail the user can click on the photo and see it in its actual size.
+User informs an invalid email and triggers the `login` button. After this it is redirected to the `Husky image preview screen` and you can navigate between the categories in the `navigation bar` below. If you want to see the photo in more detail the user can click on the photo and see it in its actual size.
 
 
 ## Decisions taken during development
-
+  1. Library decisions:
+    - Butterknife: I decided to use butterknife to increase productivity at the time of bind and listeners from some views
+    - Retrofit: I decided to use the retrofit to consume the API's for facilitating the treatment of callbacks, speed in the transmission and being a library that is very common in the day-to-day of most mobile development companies.
+    - Picasso: 
+    - Sneaker
+    - AHBottomNavigation
+    - okHttpLogInterceptor
+    - Facebook Shimmer
+  2. Architeture decisions:
+    -
 
 
