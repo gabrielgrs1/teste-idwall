@@ -1,6 +1,6 @@
 # idDogs
 
-*[Download App](https://goo.gl/LZY98q)
+[Download App](https://goo.gl/LZY98q)
 
 idDog was an application developed for the test for android development of the company idWall, with the aim of showing photos of dogs divided into category.
 
