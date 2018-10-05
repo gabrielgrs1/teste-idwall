@@ -11,6 +11,8 @@ import com.irozon.sneaker.Sneaker;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import gabrielgrs.com.br.provaidwall.DogsViewerApplication;
 import gabrielgrs.com.br.provaidwall.R;
 import gabrielgrs.com.br.provaidwall.service.api.feed.FeedDto;
@@ -29,29 +31,28 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     public static final String PUG_TEXT = DogsViewerApplication.getInstance().getString(R.string.feed_pug_textivew);
     public static final String LABRADOR_TEXT = DogsViewerApplication.getInstance().getString(R.string.feed_labrador_textivew);
 
-    private AHBottomNavigation mBottomNavigation;
+    @BindView(R.id.bottom_navigation)
+    AHBottomNavigation mBottomNavigation;
+
+    @BindView(R.id.feed_dogs_recyclerview)
+    RecyclerView mFeedDogsRecyclerView;
+
+    @BindView(R.id.feed_title_textview)
+    TextView mFeedTitleTextView;
+
     private DogsListAdapter mDogsListAdapter;
     private List<String> mDogImageLinkList;
-    private RecyclerView mFeedDogsRecyclerView;
-    private TextView mFeedTitleTextView;
-
 
     //TODO IMPLEMENTAR DIALOG DE FECHAR APLICACAO AO PRESSIONAR DUAS VEZES O VOLTAR
     //TODO IMPLEMENTAR BOTAO SAIR
     //TODO IMPLEMENTAR PARCABLE AO INVES DE SERIALIZABLE
-    //TODO IMPLEMENTAR DAGGER
     //TODO IMPLEMENTAR ROOM PARA ARMAZENAR O TOKEN
-    //TODO IMPLEMENTAR APPBAR CUSTOMIZADA COM A RACA DO CACHORRO
-    //TODO TROCAR ICONE DO APLICATIVO
-    //TODO VER PORQUE O BINDVIEW ESTA CRASHANDO O APP E CASO DESCUBRA O PORQUE, COLOCAR TODOS OS FINDVIEWBYID EM BINDVIEW
+    //TODO IMPLEMENTAR O DAGGER
     //TODO COLOCAR UM DIMENS DO TAMANHO DAS IMAGEVIEWS
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_feed);
-        mBottomNavigation = findViewById(R.id.bottom_navigation);
-        mFeedDogsRecyclerView = findViewById(R.id.feed_dogs_recyclerview);
-        mFeedTitleTextView = findViewById(R.id.feed_title_textview);
-
+        ButterKnife.bind(this);
     }
 
     @Override

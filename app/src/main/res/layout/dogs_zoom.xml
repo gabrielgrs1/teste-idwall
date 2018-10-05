@@ -23,7 +23,7 @@
     </com.facebook.shimmer.ShimmerFrameLayout>
 
     <ImageView
-        android:id="@+id/dialog_list_dogs_item_imageview"
+        android:id="@+id/dialog_dog_imageview"
         android:layout_width="400dp"
         android:layout_height="400dp"
         android:contentDescription="@string/list_dogs_item_imageview"
