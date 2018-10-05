@@ -36,8 +36,9 @@ User informs an invalid email and triggers the `login` button. After this it is 
     - **Facebook Shimmer**: I used Facebook Shimmer to give user feedback at Image's loading because it is currently one of the most used libraries to give load feedback to the user, and I have decided to follow the current design pattern.
   
   - Architeture decisions
-    - I decided to split every piece of code that had a function in different methods so that any developer who has not seen the code will still know for sure what's going on.
-    - I decided to organize the UI classes in packages related to their type (Activity, adapter ...) because they find it easier to find something if the project grows.
+    - I decided to split every piece of code that had a function in `different methods` so that any developer who has not seen the code will still know for sure what's going on. `(SRP)`
+    - I decided to organize the `UI class` in packages related to their type `(Activity, adapter ...)` because they find it easier to find something if the project grows.
+    - I have organized my classes that `make, assemble, receive requests` for screens because they have several different classes that refer to a single screen and are very connected between them.
     - I've used Parcelable to `serialize` objects by though it's harder to implement, it performs much better than `Serializable`.
     - I used `RecyclerView` with a `GridLayoutManager` because the performance of `RecyclerView` is better than a `ListView`.
     - I decided to store the token inside my `Application class` because it would be an element to use within the application at all times, however I did not see the need to store it using `SharedPreferences` since the user should only enter the email to view the images.
