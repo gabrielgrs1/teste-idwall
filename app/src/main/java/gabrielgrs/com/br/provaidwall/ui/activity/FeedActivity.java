@@ -127,25 +127,32 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     private String getDogSelectedBy(int position) {
-        if (position == HUSKY_POSITION) {
-            return HUSKY_TEXT;
-        } else if (position == HOUND_POSITION) {
-            return HOUND_TEXT;
-        } else if (position == PUG_POSITION) {
-            return PUG_TEXT;
+        switch (position) {
+            case HOUND_POSITION:
+                return HOUND_TEXT;
+            case PUG_POSITION:
+                return PUG_TEXT;
+            case LABRADOR_POSITION:
+                return LABRADOR_TEXT;
+            default:
+                return HUSKY_TEXT;
         }
-        return LABRADOR_TEXT;
     }
 
     private void setTitleBy(int position) {
-        if (position == HUSKY_POSITION) {
-            mFeedTitleTextView.setText(R.string.feed_husky_textivew);
-        } else if (position == HOUND_POSITION) {
-            mFeedTitleTextView.setText(R.string.feed_hound_textivew);
-        } else if (position == PUG_POSITION) {
-            mFeedTitleTextView.setText(R.string.feed_pug_textivew);
-        } else if (position == LABRADOR_POSITION) {
-            mFeedTitleTextView.setText(R.string.feed_labrador_textivew);
+        switch (position) {
+            case HOUND_POSITION:
+                mFeedTitleTextView.setText(R.string.feed_hound_textivew);
+                break;
+            case PUG_POSITION:
+                mFeedTitleTextView.setText(R.string.feed_pug_textivew);
+                break;
+            case LABRADOR_POSITION:
+                mFeedTitleTextView.setText(R.string.feed_labrador_textivew);
+                break;
+            default:
+                mFeedTitleTextView.setText(R.string.feed_husky_textivew);
+                break;
         }
     }
 

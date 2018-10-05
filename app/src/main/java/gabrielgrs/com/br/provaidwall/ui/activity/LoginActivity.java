@@ -21,7 +21,6 @@ import gabrielgrs.com.br.provaidwall.utils.validator.ValidateEmail;
 
 public class LoginActivity extends GenericActivity implements LoginRepository.LoginServiceListener {
 
-    private LoginActivity mContext = this;
     @BindView(R.id.login_progress_progressbar)
     ProgressBar mLoginProgressbar;
 
@@ -42,7 +41,7 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
 
     @Override
     public void response(LoginResponse loginResponse) {
-        Intent goToFeed = new Intent(mContext, FeedActivity.class);
+        Intent goToFeed = new Intent(this, FeedActivity.class);
         startActivity(goToFeed);
     }
 
@@ -58,7 +57,7 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
 
     @Override
     public void serverError(String message) {
-        Sneaker.with(mContext)
+        Sneaker.with(this)
                 .setTitle(DogsViewerApplication.getInstance().getString(R.string.generic_erro_title))
                 .setDuration(8000)
                 .setMessage(message)
@@ -86,7 +85,7 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
     private void loginService() {
         String email = Objects.requireNonNull(mEmailEditText.getText().toString());
 
-        new LoginRepository(mContext).login(email);
+        new LoginRepository(this).login(email);
     }
 
 }
