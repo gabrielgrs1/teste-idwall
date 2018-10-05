@@ -14,7 +14,7 @@
     <string name="generic_not_auth_error">"Usuário não autenticado"</string>
 
     <!--Login-->
-    <string name="login_title_textview">Dogs Viewer</string>
+    <string name="login_title_textview">idDog</string>
     <string name="login_login_inputlayout_hint">Digite aqui seu email</string>
     <string name="login_signup_button">Entrar</string>
 
@@ -29,7 +29,7 @@
 
     <!--Feed Exit Dialog-->
     <string name="feed_exit_dialog_title">Confirmação</string>
-    <string name="feed_exit_dialog_message">Voce tem certeza que deseja fechar a aplicacao?</string>
+    <string name="feed_exit_dialog_message">Você tem certeza que deseja fechar a aplicação?</string>
     <string name="feed_exit_dialog_positive_button">Confirmar</string>
     <string name="feed_exit_dialog_negative_button">Cancelar</string>
     <string name="feed_menu_exit_button">Exit Menu</string>

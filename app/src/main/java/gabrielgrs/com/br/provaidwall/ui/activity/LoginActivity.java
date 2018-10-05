@@ -3,6 +3,7 @@ package gabrielgrs.com.br.provaidwall.ui.activity;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -28,6 +29,9 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
     @BindView(R.id.login_login_inputlayout)
     TextInputLayout mEmailInputLayout;
 
+    @BindView(R.id.login_signup_button)
+    Button mLoginButton;
+
     @BindView(R.id.login_login_edittext)
     EditText mEmailEditText;
 
@@ -50,11 +54,13 @@ public class LoginActivity extends GenericActivity implements LoginRepository.Lo
     @Override
     public void startLoading() {
         mLoginProgressbar.setVisibility(View.VISIBLE);
+        mLoginButton.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
         mLoginProgressbar.setVisibility(View.GONE);
+        mLoginButton.setVisibility(View.VISIBLE);
     }
 
     @Override

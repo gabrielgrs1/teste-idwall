@@ -187,9 +187,9 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     }
 
     private void configureBottomBarStyle() {
-        mBottomNavigation.setDefaultBackgroundColor(DogsViewerApplication.getInstance().getColor(R.color.colorBackgroundBottomBar));
-        mBottomNavigation.setAccentColor(DogsViewerApplication.getInstance().getColor(R.color.colorBackgroundActiveBottomBarItem));
-        mBottomNavigation.setInactiveColor(DogsViewerApplication.getInstance().getColor(R.color.colorBackgroundInactiveBottomBarItem));
+        mBottomNavigation.setDefaultBackgroundColor(DogsViewerApplication.getInstance().getResources().getColor(R.color.colorBackgroundBottomBar));
+        mBottomNavigation.setAccentColor(DogsViewerApplication.getInstance().getResources().getColor(R.color.colorBackgroundActiveBottomBarItem));
+        mBottomNavigation.setInactiveColor(DogsViewerApplication.getInstance().getResources().getColor(R.color.colorBackgroundInactiveBottomBarItem));
     }
 
     private void configureBottomBarItens() {
