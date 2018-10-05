@@ -1,9 +1,9 @@
 # idDogs
 
-[App and API documentation](https://github.com/idwall/desafios-iddog)
-[Download Apk](https://goo.gl/LZY98q)
+**idDog** was an application developed for the test for android development of the company idWall, with the aim of showing photos of dogs divided into category.
 
-idDog was an application developed for the test for android development of the company idWall, with the aim of showing photos of dogs divided into category.
+- [App and API documentation](https://github.com/idwall/desafios-iddog)
+- [Download Apk](https://goo.gl/LZY98q)
 
 <p align="center">
   <img src="http://i.imgur.com/Y70t6OM.gif" alt="Demo app"
