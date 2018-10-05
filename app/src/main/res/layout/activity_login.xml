@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/login_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/bungee_hairline"
+        android:text="@string/login_title_textview"
+        android:textColor="@android:color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_login_inputlayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/login_login_inputlayout_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_title_textview">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/login_login_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
+    </android.support.design.widget.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/login_progress_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/LinearProgress"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/login_login_inputlayout"
+        app:layout_constraintStart_toStartOf="@+id/login_login_inputlayout"
+        app:layout_constraintTop_toBottomOf="@+id/login_login_inputlayout" />
+
+    <Button
+        android:id="@+id/login_signup_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/style_primary_button"
+        android:text="@string/login_signup_button"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/login_login_inputlayout"
+        app:layout_constraintStart_toStartOf="@+id/login_login_inputlayout"
+        app:layout_constraintTop_toBottomOf="@+id/login_progress_progressbar" />
+
+</android.support.constraint.ConstraintLayout>

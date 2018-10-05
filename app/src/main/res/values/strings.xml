@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Prova IDwall</string>
+
+    <!--Generic error-->
+    <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
+    <string name="generic_server_error">Não foi possível se conectar ao servidor.</string>
+    <string name="generic_worng_user_password">Usuário e/ou senha incorreto!</string>
+    <string name="generic_unkown_error">Erro desconhecido!</string>
+    <string name="generic_log_error">Erro de servidor: </string>
+    <string name="generic_erro_title">Erro!</string>
+    <string name="generic_sorry_title">Desculpe</string>
+    <string name="generic_required_field">Campo obrigatório</string>
+    <string name="generic_invalid_mail">Email inválido</string>
+    <string name="generic_not_auth_error">"Usuário não autenticado"</string>
+
+    <!--Login-->
+    <string name="login_title_textview">Dogs Viewer</string>
+    <string name="login_login_inputlayout_hint">Digite aqui seu email</string>
+    <string name="login_signup_button">Entrar</string>
+
+    <!--Feed-->
+    <string name="list_dogs_item_imageview">Dog image</string>
+    <string name="feed_husky_textivew">Husky</string>
+    <string name="feed_hound_textivew">Hound</string>
+    <string name="feed_pug_textivew">Pug</string>
+    <string name="feed_labrador_textivew">Labrador</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0063d9</color>
+    <color name="colorPrimaryDark">#0051b1</color>
+    <color name="colorAccent">#212121</color>
+
+    <color name="colorPrimaryButton">#0068e4</color>
+    <color name="colorBackgroundBottomBar">#f1f1f1</color>
+    <color name="colorBackgroundInactiveBottomBarItem">#747474</color>
+    <color name="colorBackgroundActiveBottomBarItem">#0068e4</color>
+
+
+</resources>
