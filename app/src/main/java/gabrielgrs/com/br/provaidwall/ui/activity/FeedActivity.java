@@ -48,9 +48,7 @@ public class FeedActivity extends GenericActivity implements FeedRepository.Feed
     private List<String> mDogImageLinkList;
     private AlertDialog alertDialog;
 
-    //TODO IMPLEMENTAR BOTAO SAIR
     //TODO IMPLEMENTAR O DAGGER
-    //TODO COLOCAR UM DIMENS DO TAMANHO DAS IMAGEVIEWS
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_feed);

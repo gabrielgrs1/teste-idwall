@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prova IDwall</string>
+    <string name="app_name">idDog</string>
 
     <!--Generic error-->
     <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
