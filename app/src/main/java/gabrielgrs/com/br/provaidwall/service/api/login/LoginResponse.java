@@ -1,21 +1,31 @@
 
 package gabrielgrs.com.br.provaidwall.service.api.login;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class LoginResponse implements Serializable {
+public class LoginResponse implements Parcelable {
 
     @SerializedName("user")
     private User user;
 
-    public LoginResponse() {
+    private LoginResponse(Parcel in) {
+        user = in.readParcelable(getClass().getClassLoader());
     }
 
-    public LoginResponse(User user) {
-        this.user = user;
-    }
+    public static final Creator<LoginResponse> CREATOR = new Creator<LoginResponse>() {
+        @Override
+        public LoginResponse createFromParcel(Parcel in) {
+            return new LoginResponse(in);
+        }
+
+        @Override
+        public LoginResponse[] newArray(int size) {
+            return new LoginResponse[size];
+        }
+    };
 
     public User getUser() {
         return user;
@@ -32,7 +42,17 @@ public class LoginResponse implements Serializable {
                 '}';
     }
 
-    public static class User implements Serializable {
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(user, i);
+    }
+
+    public static class User implements Parcelable {
 
         @SerializedName("_id")
         private String id;
@@ -52,25 +72,30 @@ public class LoginResponse implements Serializable {
         @SerializedName("__v")
         private Long v;
 
-        public User() {
+        User(Parcel in) {
+            id = in.readString();
+            email = in.readString();
+            token = in.readString();
+            createdAt = in.readString();
+            updatedAt = in.readString();
+            if (in.readByte() == 0) {
+                v = null;
+            } else {
+                v = in.readLong();
+            }
         }
 
-        public User(String id, String email, String token, String createdAt, String updatedAt, Long v) {
-            this.id = id;
-            this.email = email;
-            this.token = token;
-            this.createdAt = createdAt;
-            this.updatedAt = updatedAt;
-            this.v = v;
-        }
+        public static final Creator<User> CREATOR = new Creator<User>() {
+            @Override
+            public User createFromParcel(Parcel in) {
+                return new User(in);
+            }
 
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
+            @Override
+            public User[] newArray(int size) {
+                return new User[size];
+            }
+        };
 
         public String getId() {
             return id;
@@ -84,44 +109,24 @@ public class LoginResponse implements Serializable {
             return token;
         }
 
-        public void setToken(String token) {
-            this.token = token;
-        }
-
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public String getUpdatedAt() {
-            return updatedAt;
-        }
-
-        public void setUpdatedAt(String updatedAt) {
-            this.updatedAt = updatedAt;
-        }
-
-        public Long getV() {
-            return v;
-        }
-
-        public void setV(Long v) {
-            this.v = v;
+        @Override
+        public int describeContents() {
+            return 0;
         }
 
         @Override
-        public String toString() {
-            return "User{" +
-                    "id='" + id + '\'' +
-                    ", email='" + email + '\'' +
-                    ", token='" + token + '\'' +
-                    ", createdAt='" + createdAt + '\'' +
-                    ", updatedAt='" + updatedAt + '\'' +
-                    ", v=" + v +
-                    '}';
+        public void writeToParcel(Parcel parcel, int i) {
+            parcel.writeString(id);
+            parcel.writeString(email);
+            parcel.writeString(token);
+            parcel.writeString(createdAt);
+            parcel.writeString(updatedAt);
+            if (v == null) {
+                parcel.writeByte((byte) 0);
+            } else {
+                parcel.writeByte((byte) 1);
+                parcel.writeLong(v);
+            }
         }
     }
 }
