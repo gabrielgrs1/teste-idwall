@@ -29,11 +29,11 @@ User informs an invalid email and triggers the `login` button. After this it is 
   - Library decisions
     - **Butterknife**: I decided to use butterknife to increase productivity at the time of bind and listeners from some views
     - **Retrofit**: I decided to use the retrofit to consume the API's for facilitating the treatment of callbacks, speed in the  transmission and being a library that is very common in the day-to-day of most mobile development companies.
-    - **Picasso**: 
-    - **Sneaker**:
-    - **AHBottomNavigation**:
-    - **okHttpLogInterceptor**:
-    - **Facebook Shimmer**:
+    - **Picasso**: I used Picasso to download the images because using it is very simple and brings great features including automatic image caching.
+    - **Sneaker**: I used Sneaker for alert notifications because it is very easy to customize and it is of immense importance to interact with the user with any action taken in the application
+    - **AHBottomNavigation**: I used AHBottomNavigation for create my bottombar because she is a very simple to use and follow de material design guideline
+    - **okHttpLogInterceptor**: I decided to use the okhttp logging interceptor because during the development I felt the need to log the requests to know for sure what was happening, besides being a library commonly used for this functionality
+    - **Facebook Shimmer**: I used Facebook Shimmer to give user feedback at Image's loading because it is currently one of the most used libraries to give load feedback to the user, and I have decided to follow the current design pattern
   
   - Architeture decisions
     -
