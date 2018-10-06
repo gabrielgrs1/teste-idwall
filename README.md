@@ -23,7 +23,7 @@
 
 ## How It Works
 
-User informs an invalid email and triggers the `login` button. After this it is redirected to the `Husky image preview screen` and you can navigate between the categories in the `navigation bar` below. If you want to see the photo in more detail the user can click on the photo and see it in its actual size.
+User informs a valid email and triggers the `login` button. After this it is redirected to the `Husky image preview screen` and he can navigate between the categories at the `bottom bar`. If he want to see the photo in more detail the user can click on the photo and see it in its real size.
 
 
 ## Decisions taken during development
